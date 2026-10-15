@@ -291,7 +291,23 @@ video {
   margin: 0;
 }
 
-.tags li {
+.tag-btn {
+  font: inherit;
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s, color 0.25s;
+}
+
+.tag-btn:hover,
+.tag-btn:focus-visible {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.tags li,
+.tag-btn {
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -580,6 +596,15 @@ video {
 }
 
 .tilt__body {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
   position: relative;
   aspect-ratio: 4 / 5;
   transform-style: preserve-3d;
@@ -637,6 +662,17 @@ video {
   font-weight: 400;
   font-size: 1.8rem;
   margin: 0 0 0.4rem;
+}
+
+.tilt__cta {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
 }
 
 .tilt__copy p {
@@ -709,9 +745,41 @@ video {
   font-size: 0.9rem;
 }
 
-.plan li::before {
+.plan__pt {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0.2rem 0;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.35s ease;
+}
+
+.plan__pt::before {
   content: "+ ";
   opacity: 0.6;
+}
+
+.plan__pt::after {
+  content: " →";
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.plan__pt:hover,
+.plan__pt:focus-visible {
+  background-size: 100% 1px;
+}
+
+.plan__pt:hover::after,
+.plan__pt:focus-visible::after {
+  opacity: 1;
 }
 
 /* Contact ----------------------------------------------------------- */
@@ -920,6 +988,806 @@ video {
   }
 }
 
+/* ================================================================== */
+/* Section heads (shared numbering)                                    */
+/* ================================================================== */
+
+.sec-head {
+  display: grid;
+  grid-template-columns: auto 1fr minmax(0, 22rem);
+  align-items: end;
+  gap: 1.5rem;
+  padding-bottom: 1.4rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.sec-head h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5vw, 4.4rem);
+  line-height: 0.95;
+  margin: 0;
+}
+
+.sec-head .label {
+  margin-bottom: 0.6rem;
+}
+
+.sec-head__n {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--accent);
+  align-self: start;
+}
+
+.sec-head__aside {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.services h2 {
+  margin: 0;
+}
+
+.hdr__nav a[aria-current]::after {
+  transform: scaleX(1);
+}
+
+/* ================================================================== */
+/* What we do: production types                                         */
+/* ================================================================== */
+
+.prod {
+  position: relative;
+  padding: clamp(5rem, 10vw, 8rem) var(--gut);
+  background: #1f3550;
+}
+
+.prod .sec-head {
+  border-color: rgba(241, 237, 229, 0.25);
+}
+
+.prod .sec-head__aside,
+.prod .label {
+  color: rgba(241, 237, 229, 0.7);
+}
+
+.prod__list {
+  border-top: 1px solid rgba(241, 237, 229, 0.7);
+}
+
+.prod__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2rem;
+  gap: 2rem;
+  align-items: start;
+  width: 100%;
+  padding: 2rem 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid rgba(241, 237, 229, 0.35);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: padding 0.35s ease, background 0.35s ease;
+}
+
+.prod__row:hover,
+.prod__row:focus-visible {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: rgba(241, 237, 229, 0.05);
+}
+
+.prod__name {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.4vw, 2.9rem);
+  line-height: 1.05;
+}
+
+.prod__body {
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+  line-height: 1.4;
+  color: rgba(241, 237, 229, 0.92);
+  max-width: 34ch;
+}
+
+.prod__go {
+  font-size: 1.4rem;
+  color: var(--accent);
+  transform: translateX(-6px);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.prod__row:hover .prod__go,
+.prod__row:focus-visible .prod__go {
+  transform: none;
+  opacity: 1;
+}
+
+.prod__float {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  width: 16rem;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+}
+
+.prod__float.is-on {
+  opacity: 1;
+}
+
+/* ================================================================== */
+/* Options                                                              */
+/* ================================================================== */
+
+.options {
+  padding: clamp(5rem, 10vw, 8rem) var(--gut);
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.options .sec-head {
+  border-color: rgba(12, 14, 13, 0.18);
+}
+
+.options .label,
+.options .sec-head__aside {
+  color: #5c5f58;
+}
+
+.options .sec-head__n {
+  color: #3d6b4a;
+}
+
+.options__tabs {
+  display: inline-flex;
+  gap: 0.3rem;
+  padding: 0.3rem;
+  margin-bottom: 2rem;
+  background: rgba(12, 14, 13, 0.07);
+  border-radius: 999px;
+}
+
+.options__tab {
+  font: inherit;
+  font-size: 0.88rem;
+  padding: 0.6rem 1.2rem;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--bg);
+  cursor: pointer;
+}
+
+.options__tab[aria-selected="true"] {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.options__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.opt {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.opt[hidden] {
+  display: none;
+}
+
+.opt:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 50px -24px rgba(12, 14, 13, 0.45);
+}
+
+.opt__img {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.opt__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.opt:hover .opt__img img {
+  transform: scale(1.05);
+}
+
+.opt__group {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.8rem;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.6rem;
+}
+
+.opt__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.4rem;
+}
+
+.opt__n {
+  font-family: var(--serif);
+  font-style: italic;
+  color: #3d6b4a;
+}
+
+.opt h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.7rem;
+  margin: 0.2rem 0 0.5rem;
+}
+
+.opt p {
+  margin: 0 0 1rem;
+  color: #4a4d47;
+  line-height: 1.5;
+}
+
+.opt ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.4rem;
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.88rem;
+}
+
+.opt li::before {
+  content: "+ ";
+  color: #3d6b4a;
+}
+
+.opt__actions {
+  margin-top: auto;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.cta-choose {
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0.8rem 1rem;
+  border: 0;
+  background: var(--bg);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+
+.cta-choose:hover {
+  background: #3d6b4a;
+}
+
+.cta-examples {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.5rem;
+  border: 0;
+  background: none;
+  color: var(--bg);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+/* ================================================================== */
+/* Start a project                                                      */
+/* ================================================================== */
+
+.start {
+  position: relative;
+  overflow: hidden;
+}
+
+.start__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.32);
+}
+
+.start__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(5rem, 10vw, 8rem) var(--gut);
+}
+
+.start__intro h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 5.5vw, 5rem);
+  line-height: 0.95;
+  margin: 0 0 1.2rem;
+}
+
+.start__lead {
+  color: rgba(241, 237, 229, 0.85);
+  line-height: 1.6;
+  max-width: 36ch;
+  margin: 0 0 2rem;
+}
+
+.start__direct {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+
+.start__direct li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.start__direct span {
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.start__direct a {
+  color: var(--ink);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.start__direct a:hover {
+  color: var(--accent);
+}
+
+.brief {
+  display: grid;
+  gap: 1.2rem;
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  background: rgba(12, 14, 13, 0.72);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.brief__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.field > span,
+.field legend {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0;
+  margin-bottom: 0.5rem;
+}
+
+.field input,
+.field textarea {
+  font: inherit;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(241, 237, 229, 0.35);
+  padding: 0.6rem 0;
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chip span {
+  display: inline-block;
+  font-size: 0.85rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid rgba(241, 237, 229, 0.3);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.chip:hover span {
+  border-color: var(--accent);
+}
+
+.chip input:checked + span {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.chip input:focus-visible + span {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.brief__send {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  padding-top: 0.4rem;
+}
+
+.cta-send {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.95rem 1.6rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--bg);
+  cursor: pointer;
+  transition: transform 0.25s;
+}
+
+.cta-send:hover {
+  transform: translateY(-2px);
+}
+
+.cta-send-mail {
+  font: inherit;
+  padding: 0.95rem 1.4rem;
+  border: 1px solid rgba(241, 237, 229, 0.4);
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+
+.cta-send-mail:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* ================================================================== */
+/* Footer                                                               */
+/* ================================================================== */
+
+.ftr {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(3, 1fr);
+  gap: 2rem;
+  padding: 3.5rem var(--gut) 3rem;
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 0.92rem;
+}
+
+.ftr__brand {
+  display: flex;
+  gap: 0.9rem;
+  align-items: start;
+  color: var(--ink);
+}
+
+.ftr__brand p {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+
+.ftr__brand p span {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.ftr__col {
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+}
+
+.ftr__col .label {
+  margin-bottom: 0.4rem;
+}
+
+.ftr__col a,
+.ftr__col button {
+  color: var(--ink);
+  text-decoration: none;
+  font: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.ftr__col a:hover,
+.ftr__col button:hover {
+  color: var(--accent);
+}
+
+/* ================================================================== */
+/* Mobile menu                                                          */
+/* ================================================================== */
+
+.burger {
+  display: none;
+  width: 2.6rem;
+  height: 2.6rem;
+  padding: 0;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  place-content: center;
+  gap: 5px;
+}
+
+.burger span {
+  display: block;
+  width: 1.1rem;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.3s;
+}
+
+.burger[aria-expanded="true"] span:first-child {
+  transform: translateY(3px) rotate(45deg);
+}
+
+.burger[aria-expanded="true"] span:last-child {
+  transform: translateY(-3px) rotate(-45deg);
+}
+
+@media (max-width: 1100px) {
+  .options__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ftr {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .hdr {
+    gap: 0.8rem;
+  }
+  .burger {
+    display: grid;
+  }
+  .cta-book {
+    display: none;
+  }
+  .hdr__nav {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.4rem;
+    padding: 0 var(--gut);
+    background: var(--bg);
+    transform: translateY(-100%);
+    transition: transform 0.45s cubic-bezier(0.7, 0, 0.2, 1);
+  }
+  .hdr__nav.is-open {
+    transform: none;
+  }
+  .hdr__nav a {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    letter-spacing: 0;
+  }
+  .hdr:has(.hdr__nav.is-open) {
+    mix-blend-mode: normal;
+  }
+  .sec-head {
+    grid-template-columns: auto 1fr;
+  }
+  .sec-head__aside {
+    grid-column: 1 / -1;
+  }
+  .prod__row {
+    grid-template-columns: 1fr 1.5rem;
+    gap: 0.8rem;
+  }
+  .prod__body {
+    grid-column: 1;
+  }
+  .prod__go {
+    grid-row: 1;
+    grid-column: 2;
+    opacity: 1;
+    transform: none;
+  }
+  .prod__float {
+    display: none;
+  }
+  .start__inner,
+  .brief__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .options__grid,
+  .ftr {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================================================== */
+/* All projects (layout follows the studio's original project rows)    */
+/* ================================================================== */
+
+.projects {
+  padding: clamp(4rem, 8vw, 6rem) var(--gut);
+  background: #000;
+}
+
+.proj {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.1fr;
+  grid-template-rows: 1fr auto;
+  gap: 1.5rem 2.5rem;
+  padding: 1.6rem 0 1.4rem;
+  border-top: 1px solid rgba(241, 237, 229, 0.8);
+  min-height: 22rem;
+}
+
+.proj__name {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.6vw, 3.2rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.proj__text p {
+  margin: 0 0 1.4rem;
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 36ch;
+}
+
+.proj__text .proj__cat {
+  margin: 0;
+}
+
+.proj__img {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+  align-self: start;
+}
+
+.proj__img img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.proj__img:hover img {
+  transform: scale(1.04);
+}
+
+.proj__foot {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+}
+
+.cta-discover {
+  font: inherit;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  padding: 0 0 2px;
+  cursor: pointer;
+  transition: color 0.25s;
+}
+
+.cta-discover:hover {
+  color: var(--accent);
+}
+
+.viewer {
+  grid-template-rows: auto auto 1fr;
+}
+
+.viewer__summary {
+  margin: 0;
+  max-width: 70ch;
+  color: rgba(241, 237, 229, 0.8);
+  line-height: 1.65;
+}
+
+.viewer__summary[hidden] {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .proj {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    min-height: 0;
+  }
+  .proj__img {
+    grid-row: 2;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -928,13 +1796,15 @@ video {
       <span class="mark__mono" aria-hidden="true">EH</span>
       <span class="mark__word">Eitan House</span>
     </a>
-    <nav class="hdr__nav" aria-label="Primary">
+    <nav class="hdr__nav" id="nav" aria-label="Primary">
+      <a href="#productions">What we do</a>
       <a href="#work">Work</a>
       <a href="#services">Services</a>
-      <a href="#how">How we work</a>
-      <a href="#contact">Contact</a>
+      <a href="#options">Options</a>
+      <a href="#start">Contact</a>
     </nav>
-    <a class="cta-book" href="#contact"><span>Book a shoot</span></a>
+    <a class="cta-book" href="#start"><span>Start a project</span></a>
+    <button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
   </header>
 
   <main id="top">
@@ -957,13 +1827,13 @@ video {
           <p class="kicker">Images / Video</p>
           <h2 class="chapter__title">Images and video.</h2>
           <p class="chapter__body">Image creation and video creation, for brands, campaigns and the feed.</p>
-          <ul class="tags"><li>Image Creation</li><li>Video Creation</li></ul>
+          <div class="tags"><button type="button" class="tag-btn" data-kind="image">Image Creation</button><button type="button" class="tag-btn" data-kind="video">Video Creation</button></div>
         </article>
         <article class="chapter">
           <p class="kicker">Social / Ads / Web</p>
           <h2 class="chapter__title">Content that gets seen.</h2>
           <p class="chapter__body">Social media content and ads, plus website management and social media management.</p>
-          <ul class="tags"><li>Social Content</li><li>Ads</li><li>Websites</li><li>Social Management</li></ul>
+          <div class="tags"><button type="button" class="tag-btn" data-kind="social">Social Content</button><button type="button" class="tag-btn" data-kind="ads">Ads</button><a class="tag-btn" href="#start">Websites</a><a class="tag-btn" href="#start">Social Management</a></div>
         </article>
         <article class="chapter chapter--right">
           <p class="kicker">Projects / Retainers</p>
@@ -974,11 +1844,24 @@ video {
       </div>
     </section>
 
+    <section class="prod" id="productions" aria-labelledby="prod-title">
+      <div class="sec-head">
+        <span class="sec-head__n">01</span>
+        <div>
+          <p class="label">What we do</p>
+          <h2 id="prod-title">Productions.</h2>
+        </div>
+        <p class="sec-head__aside">Tap a production type to see the work.</p>
+      </div>
+      <div class="prod__list" id="prodList"></div>
+      <img class="prod__float" id="prodFloat" alt="" aria-hidden="true">
+    </section>
+
     <!-- 3D work ring -->
     <section class="ring" id="work" aria-labelledby="work-title">
       <div class="ring__pin">
         <div>
-          <p class="label">Work / <span id="ringCount"></span> image sets</p>
+          <p class="label"><span class="sec-head__n">02</span> Work / <span id="ringCount"></span> projects</p>
           <h2 id="work-title" class="ring__title">The work, <em>in the round.</em></h2>
         </div>
         <div class="ring__scene">
@@ -992,7 +1875,7 @@ video {
             <p class="ring__cat" id="ringCat"></p>
           </div>
           <button type="button" class="cta-open" id="ringOpen">
-            View set
+            Discover the project
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
           </button>
         </div>
@@ -1000,46 +1883,94 @@ video {
       </div>
     </section>
 
-    <section class="intro" aria-labelledby="intro-title">
-      <p class="label">Creative Production Agency</p>
-      <h2 id="intro-title" class="intro__title">We create media.</h2>
-      <div class="intro__cols">
-        <p class="intro__lead">Images, video, social media content and ads, plus the websites and social channels that carry them.</p>
-        <p>Large single productions, content creation days, or a retainer for a term agreed in advance: one year, two years or more.</p>
-      </div>
+    <section class="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title" class="label">All projects</h2>
+      <div class="projects__list" id="projectList"></div>
     </section>
 
     <section class="services" id="services" aria-labelledby="services-title">
-      <p class="label">Services</p>
-      <h2 id="services-title">What we do.</h2>
+      <div class="sec-head">
+        <span class="sec-head__n">03</span>
+        <div>
+          <p class="label">Services</p>
+          <h2 id="services-title">What we do.</h2>
+        </div>
+        <p class="sec-head__aside">Six services, one agency. Tap a service to see the work.</p>
+      </div>
       <div class="services__grid" id="serviceCards"></div>
     </section>
 
-    <section class="how" id="how" aria-labelledby="how-title">
-      <p class="label">How we work</p>
-      <h2 id="how-title">Two ways to work with us.</h2>
-      <div class="how__grid" id="plans"></div>
+    <section class="options" id="options" aria-labelledby="options-title">
+      <div class="sec-head">
+        <span class="sec-head__n">04</span>
+        <div>
+          <p class="label">Options</p>
+          <h2 id="options-title">Choose how we work together.</h2>
+        </div>
+        <p class="sec-head__aside">A single project, or a retainer for a term agreed in advance.</p>
+      </div>
+      <div class="options__tabs" role="tablist" aria-label="Option type">
+        <button type="button" role="tab" class="options__tab" aria-selected="true" data-group="all">All</button>
+        <button type="button" role="tab" class="options__tab" aria-selected="false" data-group="Single Project">Single Project</button>
+        <button type="button" role="tab" class="options__tab" aria-selected="false" data-group="Retainer">Retainer</button>
+      </div>
+      <div class="options__grid" id="optionCards"></div>
     </section>
 
-    <section class="contact" id="contact" aria-labelledby="contact-title">
-      <img class="contact__bg" alt="" loading="lazy" src="https://framerusercontent.com/images/hUwGR7pjOqprC5768CignC33kiY.jpg?scale-down-to=3840">
-      <div class="contact__inner">
-        <p class="label">Let's talk</p>
-        <h2 id="contact-title">Single project or retainer, let's talk.</h2>
-        <a class="contact__mail" href="mailto:office@eitanhouse.com">office@eitanhouse.com</a>
-        <div class="contact__row">
-          <a class="cta-wa" href="https://wa.me/972546709002" target="_blank" rel="noreferrer">WhatsApp</a>
-          <a class="cta-phone" href="tel:+972546709002">+972 54-670-9002</a>
-          <a class="cta-ig" href="https://www.instagram.com/eitan.house/" target="_blank" rel="noreferrer">@eitan.house</a>
+    <section class="start" id="start" aria-labelledby="start-title">
+      <img class="start__bg" alt="" loading="lazy" src="https://framerusercontent.com/images/hUwGR7pjOqprC5768CignC33kiY.jpg?scale-down-to=3840">
+      <div class="start__inner">
+        <div class="start__intro">
+          <span class="sec-head__n">05</span>
+          <p class="label">Start a project</p>
+          <h2 id="start-title">Tell us what you need.</h2>
+          <p class="start__lead">Pick an option and the services, and send it straight to us on WhatsApp or email.</p>
+          <ul class="start__direct">
+            <li><span>Email</span><a href="mailto:office@eitanhouse.com">office@eitanhouse.com</a></li>
+            <li><span>Phone</span><a href="tel:+972546709002">+972 54-670-9002</a></li>
+            <li><span>WhatsApp</span><a href="https://wa.me/972546709002" target="_blank" rel="noreferrer">Message us</a></li>
+            <li><span>Instagram</span><a href="https://www.instagram.com/eitan.house/" target="_blank" rel="noreferrer">@eitan.house</a></li>
+          </ul>
         </div>
+        <form class="brief" id="brief" novalidate>
+          <div class="brief__row">
+            <label class="field"><span>Name</span><input name="name" autocomplete="name"></label>
+            <label class="field"><span>Business</span><input name="business" autocomplete="organization"></label>
+          </div>
+          <fieldset class="field">
+            <legend>Option</legend>
+            <div class="chips" id="optionChips"></div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>Services</legend>
+            <div class="chips" id="serviceChips"></div>
+          </fieldset>
+          <label class="field"><span>Message</span><textarea name="message" rows="3"></textarea></label>
+          <div class="brief__send">
+            <button type="submit" class="cta-send" data-via="whatsapp">Send on WhatsApp</button>
+            <button type="submit" class="cta-send-mail" data-via="email">Send by email</button>
+          </div>
+        </form>
       </div>
     </section>
   </main>
 
   <footer class="ftr">
-    <span>Eitan House, Creative Production Agency</span>
-    <span>Images / Video / Social / Ads</span>
-    <span>Projects / Retainers</span>
+    <div class="ftr__brand">
+      <span class="mark__mono" aria-hidden="true">EH</span>
+      <p>Eitan House<br><span>Creative Production Agency</span></p>
+    </div>
+    <nav class="ftr__col" aria-label="Footer">
+      <p class="label">Site</p>
+      <a href="#productions">What we do</a><a href="#work">Work</a><a href="#services">Services</a><a href="#options">Options</a><a href="#start">Contact</a>
+    </nav>
+    <div class="ftr__col" id="ftrServices"><p class="label">Services</p></div>
+    <div class="ftr__col">
+      <p class="label">Contact</p>
+      <a href="mailto:office@eitanhouse.com">office@eitanhouse.com</a>
+      <a href="tel:+972546709002">+972 54-670-9002</a>
+      <a href="https://www.instagram.com/eitan.house/" target="_blank" rel="noreferrer">Instagram</a>
+    </div>
   </footer>
 
   <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewerTitle" hidden>
@@ -1052,6 +1983,7 @@ video {
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
     </div>
+    <p class="viewer__summary" id="viewerSummary"></p>
     <div class="viewer__strip" id="viewerStrip"></div>
   </div>
 
@@ -1095,41 +2027,206 @@ export const engagements = [
     name: "Single Projects",
     tag: "Project basis",
     body: "Large-scale productions, or a dedicated content creation day. One project, fully produced and delivered.",
-    points: ["Large productions", "Content creation days"],
+    points: [
+      { label: "Large productions", kinds: ["video", "ads"] },
+      { label: "Content creation days", kinds: ["image", "social"] },
+    ],
   },
   {
     id: "retainer",
     name: "Retainer",
     tag: "1 to 2 years",
     body: "Work for a period agreed in advance, a year, two years or more, with ongoing content and management under one agency.",
-    points: ["Agreed term", "Ongoing production", "Website management", "Social management"],
+    points: [
+      { label: "Agreed term" },
+      { label: "Ongoing production", kinds: ["image", "video", "social", "ads"] },
+      { label: "Website management" },
+      { label: "Social management" },
+    ],
   },
 ];
 
 const kind = { image: "Image Creation", video: "Video Creation", social: "Social Media Content", ads: "Advertising" };
 
-const sets = [
-  ["video", "aKEHaIBrG4fEkjvlEDQhs039E", ["ittAOCXte11BGnUwSH2IJuVfz0", "rOvEAFxNYOXNVY2n2TAlm9WWzrg", "RRmYvzV2Y0CJMGykupguJoo76w", "RILWl7nwA5iMyZPwNMvrcB5uZ6k", "BCLkUq59QI2SAJ6gS9mXkYobfI", "hUwGR7pjOqprC5768CignC33kiY"]],
-  ["ads", "amwyAbn3SXB4RbBmY2HfD1NCgD0", ["F4hEThvBA6bAm9L4zPwB2SlY0", "YDut5cWsM5pD1LxA5ZdZBmobMQ", "L8Vdb6pvpFww5Qa0zGTHK362c", "pcllPECzB0frgdh1aWbWkoHl7A", "CTcZ9IbbdtimyMOi8DW44BTJMg"]],
-  ["video", "eOT1gtDstZmLI65qRXIRysEPybo", ["96e8mgrVbDnDGwRBEHgsnsokvQ", "XeiL9iI4cNuEGtCWZvyzt2PY5eM", "iaoo78JVCmHD3Keitc7dIVDpg", "qy5bG7EI6CGmw5nSYQVZ8zqhrc", "Kofp1sra9YHaZilK7MMEmKcA5x4", "F4q9Pfy1hDboJnpcR6i8Mpra2UQ"]],
-  ["image", "Yxo3mKuAh9hrj8a5xYGWjFFfNw", ["fTVgLC2baaHe0BD1ljkQ7zt3I0", "beaTVVcHAcupM04YLURYhxSsORw", "peyWFEPUgYrMrskCK7fnEelSpM", "oAU6pzjI5a6a0wbUWqZnXz6mQ", "kD8jFOnj90CchXbblIBu9y9JUos"]],
-  ["social", "EQGL5NtlquLQdTHshsoELO2XsTE", ["iddzhUVrwhA4dpSbRmUVwjkU0gY", "SHduJy9fNnWAJ6NSKPux6kSCng", "xxrbdKvaahPJAARsICZ6hcb8PbY", "Zy5GWfdoiOdKwuSh6mswqcubQ", "ACH2jJgpsUCDy4nMrdG6ULLfBak"]],
-  ["ads", "Lm3ooNT9597WImbHu6Edrk2s8UI", ["0ZlcsXw1jK5GwZFQfqQF8kX9XE", "7msaAlVtMjkLop57mmparXoyaGY", "PtuklG6C4cyfyfBcPvtAgqNAqY", "Ibu3IZUbIcn9ZriBJ7ekQKVMyr0"]],
-  ["video", "UF89HIEnU1wXDqfTBDqs09AIz0", ["CPSzgQRemT9WGekkY22bAZFj8", "avs7nPFJnrTR9KanlBkxpLuhA", "O4RW7gd5q4pxyCudCHhbiDYoE", "THgvxNAjxqxhDnFKX2SXw88s", "qJVr4nWFnmnUXaLDD4ktVdXiUU"]],
-  ["image", "z7dob6B4j84JAtUPHUwFB5Lq1Rs", ["A6l3mN7JBPw00xFy3mKYGvhp8s", "tyPmWN28oK67Y9FORpGODpQOq4", "EM5vxRZpiwQk4WVy35c6KpeyPY", "lzAxUHAcxuOCAYdNIOMCWoIKV4"]],
-  ["image", "mm3w4g9Fq6xXLodyiNqz1VsLRCA", ["7uiWgdIeLhqkkRy3pBknVcvco", "2xz7fcaFv4EiWXtE9KTJU1soy0", "ixksUpvtmsjpiwcpNPlBBor5XDE", "K9BmZbXDGWwN1gx4RvoVTW4kMVE", "mG2MldbT5xVKxCIYdGxsZST05k"]],
-  ["social", "GpqlerfGy3uu78lBFqc8FWn6A", ["YEUrUnJg94Idjbb8PaapFmNaqKs", "8hvGmWt4Kdgqa1EMo55By0uFzLY", "3AazfTDMM1VcZXA7AfpNJma66FI", "5I4C5qaUSTtIePknexTSL7rfx4", "KcsP3QjyToK1fWcsYtlhzlFOhQ"]],
+// Projects, in the original site's order, with its exact names, texts and
+// categories. `kind` maps each project to a service for the service filters.
+const projects = [
+  {
+    name: "Nillary NYC",
+    category: "Sustainable Fashion / Lifestyle",
+    summary:
+      "Nillary is a global fashion brand redefining the relationship between style and sustainability. Using recycled materials and responsible production methods, the brand creates modern apparel designed to reduce waste without compromising quality or design. We developed a visual campaign that translated these values into a cinematic and aspirational brand experience, connecting environmental responsibility with contemporary fashion culture.",
+    kind: "ads",
+    cover: "Lm3ooNT9597WImbHu6Edrk2s8UI",
+    images: ["0ZlcsXw1jK5GwZFQfqQF8kX9XE", "7msaAlVtMjkLop57mmparXoyaGY"],
+  },
+  {
+    name: "Wounded",
+    category: "Fashion Editorial",
+    summary:
+      "Wounded Boy is a fashion editorial inspired by the emotional journey of a fighter. Drawing from the world of boxing, the project explores the tension between strength and vulnerability, discipline and chaos, confidence and self-doubt. the series captures the psychological weight carried long before anyone steps into the ring.",
+    kind: "image",
+    cover: "Yxo3mKuAh9hrj8a5xYGWjFFfNw",
+    images: ["beaTVVcHAcupM04YLURYhxSsORw", "peyWFEPUgYrMrskCK7fnEelSpM", "fTVgLC2baaHe0BD1ljkQ7zt3I0", "oAU6pzjI5a6a0wbUWqZnXz6mQ", "kD8jFOnj90CchXbblIBu9y9JUos"],
+  },
+  {
+    name: "Lunisse",
+    category: "Lookbook",
+    summary:
+      "For Lunisse, we explored identity through abstraction\u2014using mirrors as a metaphor for duality, perception, and introspection. The resulting images are both poetic and disorienting, inviting the viewer to see themselves in someone else\u2019s reflection.",
+    kind: "video",
+    cover: "CPSzgQRemT9WGekkY22bAZFj8",
+    images: ["avs7nPFJnrTR9KanlBkxpLuhA", "O4RW7gd5q4pxyCudCHhbiDYoE", "THgvxNAjxqxhDnFKX2SXw88s", "qJVr4nWFnmnUXaLDD4ktVdXiUU", "UF89HIEnU1wXDqfTBDqs09AIz0"],
+  },
+  {
+    name: "Maison Calan\u00e8s",
+    category: "Luxury Food / Pastry",
+    summary:
+      "Maison Calan\u00e8s elevates the art of pastry by blending French tradition with a contemporary aesthetic. Granada was commissioned to translate this elegance into a tailored visual identity and refined digital presence.",
+    kind: "video",
+    cover: "96e8mgrVbDnDGwRBEHgsnsokvQ",
+    images: ["XeiL9iI4cNuEGtCWZvyzt2PY5eM", "iaoo78JVCmHD3Keitc7dIVDpg", "qy5bG7EI6CGmw5nSYQVZ8zqhrc", "Kofp1sra9YHaZilK7MMEmKcA5x4", "eOT1gtDstZmLI65qRXIRysEPybo"],
+  },
+  {
+    name: "Maison Alverr\u00e0",
+    category: "Jewelry & Luxury Retail",
+    summary:
+      "Maison Alverra is a contemporary jewelry house blending timeless craftsmanship with a modern, sculptural aesthetic. Our goal was to reflect that duality through a refined and immersive digital experience.",
+    kind: "video",
+    cover: "ittAOCXte11BGnUwSH2IJuVfz0",
+    images: ["rOvEAFxNYOXNVY2n2TAlm9WWzrg", "aKEHaIBrG4fEkjvlEDQhs039E", "RRmYvzV2Y0CJMGykupguJoo76w", "RILWl7nwA5iMyZPwNMvrcB5uZ6k", "BCLkUq59QI2SAJ6gS9mXkYobfI"],
+  },
+  {
+    name: "Mantra",
+    category: "Fashion",
+    summary:
+      "Mantra approached us to reimagine the way their brand was presented. Through a cinematic photography and film campaign, we created a visual identity designed to elevate perception, capture attention, and turn interest into action.",
+    kind: "ads",
+    cover: "amwyAbn3SXB4RbBmY2HfD1NCgD0",
+    images: ["F4hEThvBA6bAm9L4zPwB2SlY0", "YDut5cWsM5pD1LxA5ZdZBmobMQ", "L8Vdb6pvpFww5Qa0zGTHK362c", "pcllPECzB0frgdh1aWbWkoHl7A", "CTcZ9IbbdtimyMOi8DW44BTJMg"],
+  },
+  {
+    name: "Le S\u00e9pia",
+    category: "Luxury Hospitality / Wellness",
+    summary:
+      "Le S\u00e9pia is a luxury spa hotel nestled in nature, designed for deep restoration and quiet elegance. Granada was entrusted with creating a digital identity and website experience that echoes the atmosphere of calm, refinement, and immersive escape.",
+    kind: "social",
+    cover: "iddzhUVrwhA4dpSbRmUVwjkU0gY",
+    images: ["SHduJy9fNnWAJ6NSKPux6kSCng", "xxrbdKvaahPJAARsICZ6hcb8PbY", "EQGL5NtlquLQdTHshsoELO2XsTE", "Zy5GWfdoiOdKwuSh6mswqcubQ", "ACH2jJgpsUCDy4nMrdG6ULLfBak"],
+  },
+  {
+    name: "L\u00e9onie Flora",
+    category: "Event / Floral Design",
+    summary:
+      "L\u00e9onie Flora is a floral design studio creating immersive environments for events, spaces, and editorials. Granada was approached to craft a visual identity and digital portfolio that reflect the studio\u2019s poetic and tactile approach to floral storytelling.",
+    kind: "social",
+    cover: "GpqlerfGy3uu78lBFqc8FWn6A",
+    images: ["YEUrUnJg94Idjbb8PaapFmNaqKs", "8hvGmWt4Kdgqa1EMo55By0uFzLY", "3AazfTDMM1VcZXA7AfpNJma66FI", "5I4C5qaUSTtIePknexTSL7rfx4", "KcsP3QjyToK1fWcsYtlhzlFOhQ"],
+  },
+  {
+    name: "Elyra Studio",
+    category: "Luxury Eyewear",
+    summary:
+      "For Atelier Kairo, a high-end eyewear boutique, the mission was to create a refined brand presence rooted in precision, style, and timeless design\u2014offline and online.",
+    kind: "image",
+    cover: "7uiWgdIeLhqkkRy3pBknVcvco",
+    images: ["2xz7fcaFv4EiWXtE9KTJU1soy0", "ixksUpvtmsjpiwcpNPlBBor5XDE", "mm3w4g9Fq6xXLodyiNqz1VsLRCA", "K9BmZbXDGWwN1gx4RvoVTW4kMVE", "mG2MldbT5xVKxCIYdGxsZST05k"],
+  },
+  {
+    name: "FIRST",
+    category: "Photography",
+    summary:
+      "We crafted a bold yet refined online presence for No\u00e9mie Leduc, a portrait and editorial photographer, by designing a digital space that mirrors her artistic sensitivity and visual depth.",
+    kind: "image",
+    cover: "A6l3mN7JBPw00xFy3mKYGvhp8s",
+    images: ["tyPmWN28oK67Y9FORpGODpQOq4", "z7dob6B4j84JAtUPHUwFB5Lq1Rs", "EM5vxRZpiwQk4WVy35c6KpeyPY", "lzAxUHAcxuOCAYdNIOMCWoIKV4"],
+  },
 ];
 
-export const work = sets.map(([k, cover, images], i) => ({
-  name: `Work ${String(i + 1).padStart(2, "0")}`,
-  kind: k,
-  category: kind[k],
-  cover,
-  images: [cover, ...images],
-}));
+export const work = projects.map((p) => ({ ...p, service: kind[p.kind], images: [p.cover, ...p.images] }));
 
 export const kinds = kind;
+
+// Ways to work, as concrete options a client can pick.
+export const options = [
+  {
+    id: "content-day",
+    group: "Single Project",
+    name: "Content Day",
+    line: "A dedicated content creation day.",
+    includes: ["Image Creation", "Video Creation", "Social Media Content"],
+    cover: "EQGL5NtlquLQdTHshsoELO2XsTE",
+  },
+  {
+    id: "production",
+    group: "Single Project",
+    name: "Large Production",
+    line: "A large-scale production, fully produced and delivered.",
+    includes: ["Image Creation", "Video Creation", "Advertising"],
+    cover: "amwyAbn3SXB4RbBmY2HfD1NCgD0",
+  },
+  {
+    id: "retainer-1",
+    group: "Retainer",
+    name: "Retainer, 1 Year",
+    line: "Ongoing work for a year, agreed in advance.",
+    includes: ["Ongoing production", "Social Media Management", "Website Management", "Advertising"],
+    cover: "mm3w4g9Fq6xXLodyiNqz1VsLRCA",
+  },
+  {
+    id: "retainer-2",
+    group: "Retainer",
+    name: "Retainer, 2 Years",
+    line: "Ongoing work for two years, agreed in advance.",
+    includes: ["Ongoing production", "Social Media Management", "Website Management", "Advertising"],
+    cover: "aKEHaIBrG4fEkjvlEDQhs039E",
+  },
+];
+
+// Builds the inquiry text from the brief form and returns WhatsApp + email links.
+export function briefLinks(form) {
+  const d = new FormData(form);
+  const picked = d.getAll("services");
+  const lines = [
+    "Hi Eitan House,",
+    d.get("name") ? `Name: ${d.get("name")}` : "",
+    d.get("business") ? `Business: ${d.get("business")}` : "",
+    d.get("option") ? `Option: ${d.get("option")}` : "",
+    picked.length ? `Services: ${picked.join(", ")}` : "",
+    d.get("message") ? `\n${d.get("message")}` : "",
+  ].filter(Boolean);
+  const text = lines.join("\n");
+  return {
+    whatsapp: `https://wa.me/972546709002?text=${encodeURIComponent(text)}`,
+    email: `mailto:office@eitanhouse.com?subject=${encodeURIComponent("New project inquiry")}&body=${encodeURIComponent(text)}`,
+  };
+}
+
+// What the agency produces (copy from the studio's own site). `sets` are
+// indexes into `work`, used to open a gallery for each line.
+export const productions = [
+  {
+    id: "hospitality",
+    name: "Hospitality & Resorts",
+    body: "Cinematic photography and films designed to showcase destinations, elevate perception & increase bookings.",
+    cover: "aKEHaIBrG4fEkjvlEDQhs039E",
+    sets: [4, 6],
+  },
+  {
+    id: "commercial",
+    name: "Commercial Productions",
+    body: "Full-scale productions built to help brands launch, grow, and connect with their audience.",
+    cover: "amwyAbn3SXB4RbBmY2HfD1NCgD0",
+    sets: [5, 7, 3],
+  },
+  {
+    id: "fashion",
+    name: "Fashion Productions",
+    body: "Editorial campaigns, lookbooks, and branded content crafted to bring fashion stories to life.",
+    cover: "Yxo3mKuAh9hrj8a5xYGWjFFfNw",
+    sets: [0, 1, 2, 8, 9],
+  },
+];
 
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1190,6 +2287,38 @@ if (!reduced) {
   // iOS needs a gesture before it decodes frames.
   addEventListener("touchstart", () => video.play().then(() => video.pause()).catch(() => {}), { once: true });
 }
+
+/* ---------------------------------------------------------------- */
+/* What we do: production types, each opens its gallery              */
+/* ---------------------------------------------------------------- */
+
+$("prodList").innerHTML = productions
+  .map(
+    (p) => `
+  <button type="button" class="prod__row" data-prod="${p.id}" data-cover="${img(p.cover, 900)}">
+    <span class="prod__name">${p.name}</span>
+    <span class="prod__body">${p.body}</span>
+    <span class="prod__go" aria-hidden="true">→</span>
+  </button>`,
+  )
+  .join("");
+
+const prodFloat = $("prodFloat");
+document.querySelectorAll(".prod__row").forEach((row) => {
+  row.addEventListener("click", () => {
+    const p = productions.find((x) => x.id === row.dataset.prod);
+    openViewer({ name: p.name, category: "What we do", images: p.sets.flatMap((i) => work[i].images) });
+  });
+  row.addEventListener("pointerenter", (e) => {
+    if (e.pointerType !== "mouse" || reduced) return;
+    prodFloat.src = row.dataset.cover;
+    prodFloat.classList.add("is-on");
+  });
+  row.addEventListener("pointerleave", () => prodFloat.classList.remove("is-on"));
+  row.addEventListener("pointermove", (e) => {
+    prodFloat.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%) rotate(-3deg)`;
+  });
+});
 
 /* ---------------------------------------------------------------- */
 /* 3D ring of work                                                    */
@@ -1273,6 +2402,35 @@ setActive(0);
 requestAnimationFrame(ringTick);
 
 /* ---------------------------------------------------------------- */
+/* All projects: name, original text, category, cover                */
+/* ---------------------------------------------------------------- */
+
+$("projectList").innerHTML = work
+  .map(
+    (w, i) => `
+  <article class="proj">
+    <h3 class="proj__name">${w.name}</h3>
+    <div class="proj__text">
+      <p>${w.summary}</p>
+      <p class="proj__cat">${w.category}</p>
+    </div>
+    <button type="button" class="proj__img" data-project="${i}" aria-label="Open ${w.name}">
+      <img src="${img(w.cover, 1400)}" alt="" loading="lazy">
+    </button>
+    <div class="proj__foot">
+      <span>${String(i + 1).padStart(2, "0")}</span>
+      <button type="button" class="cta-discover" data-project="${i}">Discover the project</button>
+    </div>
+  </article>`,
+  )
+  .join("");
+
+$("projectList").addEventListener("click", (e) => {
+  const b = e.target.closest("[data-project]");
+  if (b) openViewer(work[Number(b.dataset.project)]);
+});
+
+/* ---------------------------------------------------------------- */
 /* Services with depth tilt                                          */
 /* ---------------------------------------------------------------- */
 
@@ -1280,15 +2438,16 @@ $("serviceCards").innerHTML = services
   .map(
     (s, i) => `
   <article class="tilt">
-    <div class="tilt__body">
+    <${kinds[s.id] ? "button type=\"button\"" : "a href=\"#contact\""} class="tilt__body" data-kind="${s.id}" aria-label="${kinds[s.id] ? `View ${s.name} work` : `Ask about ${s.name}`}">
       <img class="tilt__img" src="${img(s.cover, 1600)}" alt="" loading="lazy">
       <div class="tilt__glare" aria-hidden="true"></div>
       <span class="tilt__index" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
       <div class="tilt__copy">
         <h3>${s.name}</h3>
         <p>${s.detail}</p>
+        <span class="tilt__cta">${kinds[s.id] ? "View work" : "Ask us"} <span aria-hidden="true">→</span></span>
       </div>
-    </div>
+    </${kinds[s.id] ? "button" : "a"}>
   </article>`,
   )
   .join("");
@@ -1311,21 +2470,127 @@ if (!reduced) {
   });
 }
 
+/* Clicking a service (card or chapter tag) opens all work of that type */
+function openKind(k) {
+  const images = work.filter((w) => w.kind === k).flatMap((w) => w.images);
+  openViewer({ name: kinds[k], category: "Services", images });
+}
+document.addEventListener("click", (e) => {
+  const t = e.target.closest("button[data-kind]");
+  if (t && kinds[t.dataset.kind]) openKind(t.dataset.kind);
+  const pt = e.target.closest("button[data-kinds]");
+  if (pt) {
+    const ks = pt.dataset.kinds.split(",");
+    const images = work.filter((w) => ks.includes(w.kind)).flatMap((w) => w.images);
+    openViewer({ name: pt.dataset.label, category: "How we work", images });
+  }
+});
+
 /* ---------------------------------------------------------------- */
-/* Engagement models                                                  */
+/* Options: four ways to work, filterable, each with examples        */
 /* ---------------------------------------------------------------- */
 
-$("plans").innerHTML = engagements
+const kindOf = { "Image Creation": "image", "Video Creation": "video", "Social Media Content": "social", Advertising: "ads" };
+
+$("optionCards").innerHTML = options
   .map(
-    (e) => `
-  <article class="plan plan--${e.id}">
-    <p class="plan__tag">${e.tag}</p>
-    <h3>${e.name}</h3>
-    <p>${e.body}</p>
-    <ul>${e.points.map((p) => `<li>${p}</li>`).join("")}</ul>
+    (o, i) => `
+  <article class="opt" data-group="${o.group}">
+    <div class="opt__img"><img src="${img(o.cover, 1400)}" alt="" loading="lazy"><span class="opt__group">${o.group}</span></div>
+    <div class="opt__body">
+      <span class="opt__n">${String(i + 1).padStart(2, "0")}</span>
+      <h3>${o.name}</h3>
+      <p>${o.line}</p>
+      <ul>${o.includes.map((x) => `<li>${x}</li>`).join("")}</ul>
+      <div class="opt__actions">
+        <button type="button" class="cta-choose" data-option="${o.name}">Choose this option</button>
+        <button type="button" class="cta-examples" data-examples="${o.id}">See examples</button>
+      </div>
+    </div>
   </article>`,
   )
   .join("");
+
+document.querySelectorAll(".options__tab").forEach((tab) =>
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".options__tab").forEach((t) => t.setAttribute("aria-selected", String(t === tab)));
+    document.querySelectorAll(".opt").forEach((c) => {
+      c.hidden = tab.dataset.group !== "all" && c.dataset.group !== tab.dataset.group;
+    });
+  }),
+);
+
+document.addEventListener("click", (e) => {
+  const ex = e.target.closest("[data-examples]");
+  if (ex) {
+    const o = options.find((x) => x.id === ex.dataset.examples);
+    const ks = o.includes.map((x) => kindOf[x]).filter(Boolean);
+    const list = ks.length ? ks : Object.keys(kinds);
+    openViewer({ name: o.name, category: o.group, images: work.filter((w) => list.includes(w.kind)).flatMap((w) => w.images) });
+  }
+  const ch = e.target.closest("[data-option]");
+  if (ch) {
+    const input = document.querySelector(`#brief input[name="option"][value="${ch.dataset.option}"]`);
+    if (input) input.checked = true;
+    $("start").scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
+  }
+});
+
+/* ---------------------------------------------------------------- */
+/* Start a project: brief form sends to WhatsApp or email            */
+/* ---------------------------------------------------------------- */
+
+$("optionChips").innerHTML = options
+  .map((o) => `<label class="chip"><input type="radio" name="option" value="${o.name}"><span>${o.name}</span></label>`)
+  .join("");
+$("serviceChips").innerHTML = services
+  .map((s) => `<label class="chip"><input type="checkbox" name="services" value="${s.name}"><span>${s.name}</span></label>`)
+  .join("");
+
+$("brief").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const links = briefLinks(e.target);
+  const via = e.submitter?.dataset.via ?? "whatsapp";
+  if (via === "email") location.href = links.email;
+  else window.open(links.whatsapp, "_blank", "noopener");
+});
+
+/* Footer services list */
+$("ftrServices").insertAdjacentHTML(
+  "beforeend",
+  services.map((s) => (kinds[s.id] ? `<button type="button" data-kind="${s.id}">${s.name}</button>` : `<a href="#start">${s.name}</a>`)).join(""),
+);
+
+/* ---------------------------------------------------------------- */
+/* Mobile menu + active section in the nav                           */
+/* ---------------------------------------------------------------- */
+
+const burger = $("burger");
+const nav = $("nav");
+burger.addEventListener("click", () => {
+  const open = burger.getAttribute("aria-expanded") !== "true";
+  burger.setAttribute("aria-expanded", String(open));
+  nav.classList.toggle("is-open", open);
+});
+nav.addEventListener("click", (e) => {
+  if (e.target.closest("a")) {
+    burger.setAttribute("aria-expanded", "false");
+    nav.classList.remove("is-open");
+  }
+});
+
+const navLinks = [...nav.querySelectorAll("a")];
+const watched = navLinks.map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((en) => {
+      if (!en.isIntersecting) return;
+      navLinks.forEach((a) => a.toggleAttribute("aria-current", a.getAttribute("href") === `#${en.target.id}`));
+    });
+  },
+  { rootMargin: "-45% 0px -50% 0px" },
+);
+watched.forEach((sec) => sectionObserver.observe(sec));
 
 /* ---------------------------------------------------------------- */
 /* Viewer: full resolution (up to 3840px) gallery                    */
@@ -1338,6 +2603,8 @@ function openViewer(w) {
   lastFocus = document.activeElement;
   $("viewerCat").textContent = w.category;
   $("viewerTitle").textContent = w.name;
+  $("viewerSummary").textContent = w.summary ?? "";
+  $("viewerSummary").hidden = !w.summary;
   $("viewerStrip").innerHTML = w.images
     .map((id) => `<img class="viewer__media" src="${img(id, 3840)}" alt="${w.name}" loading="lazy">`)
     .join("");
