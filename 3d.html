@@ -1,0 +1,1362 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eitan House | Creative Production Agency</title>
+  <meta name="description" content="Images, video, social media content and ads, plus website and social media management. Single productions, content days and retainers.">
+  <meta property="og:title" content="Eitan House | Creative Production Agency">
+  <meta property="og:image" content="https://d2ol7oe51mr4n9.cloudfront.net/user_35VkZbOgqJOJXo8mXfNMZN3TkHp/c2408087-78b3-4312-a638-448bd78e499f.jpg">
+  <link rel="icon" href="https://framerusercontent.com/images/8p4bR91WkXcx1u7bxQH4BYNzQ.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0c0e0d;
+  --bg-2: #141816;
+  --ink: #f1ede5;
+  --muted: #a3a69f;
+  --line: rgba(241, 237, 229, 0.14);
+  --accent: #c8dccb;
+  --serif: "Bodoni Moda", "Times New Roman", serif;
+  --sans: "Manrope", system-ui, sans-serif;
+  --gut: clamp(1rem, 4vw, 3.5rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+.label {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 1.25rem;
+}
+
+/* Header ------------------------------------------------------------ */
+
+.hdr {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.1rem clamp(1rem, 3vw, 2.5rem);
+  mix-blend-mode: difference;
+  color: #fff;
+}
+
+.mark {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.mark__mono {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid currentColor;
+  font-family: var(--serif);
+}
+
+.mark__word {
+  font-size: 0.78rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.hdr__nav {
+  display: flex;
+  gap: 1.75rem;
+  margin-left: auto;
+}
+
+.hdr__nav a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  position: relative;
+}
+
+.hdr__nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease;
+}
+
+.hdr__nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.cta-book {
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.7rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  overflow: hidden;
+  position: relative;
+}
+
+.cta-book span {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-book::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  transform: translateY(101%);
+  transition: transform 0.45s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.cta-book:hover span {
+  color: #000;
+}
+
+.cta-book:hover::before {
+  transform: translateY(0);
+}
+
+/* Scroll film ------------------------------------------------------- */
+
+.film {
+  position: relative;
+}
+
+.film__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.film__poster,
+.film__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.film__video {
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+
+.film__video.is-ready {
+  opacity: 1;
+}
+
+.film__poster.is-hidden {
+  visibility: hidden;
+}
+
+.film__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(12, 14, 13, 0.6), transparent 55%),
+    linear-gradient(0deg, rgba(12, 14, 13, 0.55), transparent 35%);
+}
+
+.film__progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: rgba(241, 237, 229, 0.15);
+}
+
+.film__progress span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.film__chapters {
+  position: relative;
+  z-index: 1;
+  margin-top: -100vh;
+  margin-top: -100dvh;
+}
+
+.chapter {
+  min-height: 125vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 6rem var(--gut);
+  max-width: 44rem;
+}
+
+.chapter:first-child {
+  min-height: 100vh;
+  justify-content: flex-end;
+  padding-bottom: 14vh;
+}
+
+.chapter--right {
+  margin-left: auto;
+  text-align: left;
+}
+
+.chapter--right .chapter__body,
+.chapter--right .kicker {
+  text-shadow: 0 1px 20px rgba(0, 0, 0, 0.6);
+}
+
+.kicker {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1rem;
+}
+
+.chapter__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 7vw, 6.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.2rem;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.45);
+}
+
+.chapter__body {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 34ch;
+  margin: 0 0 1.6rem;
+  color: rgba(241, 237, 229, 0.9);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tags li {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.7rem;
+  background: rgba(12, 14, 13, 0.45);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+}
+
+.cta-reel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  padding: 0.95rem 1.5rem 0.95rem 1.1rem;
+  background: rgba(12, 14, 13, 0.55);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.cta-reel:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.cta-reel__dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: #e5484d;
+  animation: rec 1.6s infinite;
+}
+
+@keyframes rec {
+  0% {
+    box-shadow: 0 0 0 0 rgba(229, 72, 77, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(229, 72, 77, 0);
+  }
+}
+
+.cta-mail {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.4vw, 2rem);
+  color: var(--accent);
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.5s ease;
+}
+
+.cta-mail:hover {
+  background-size: 100% 1px;
+}
+
+/* 3D ring ----------------------------------------------------------- */
+
+.ring {
+  position: relative;
+  height: 420vh;
+  background: radial-gradient(120% 80% at 50% 70%, #1b2420 0%, var(--bg) 60%);
+}
+
+.ring__pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  padding: 6.5rem var(--gut) 2rem;
+  overflow: hidden;
+}
+
+.ring__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5.5vw, 5rem);
+  line-height: 0.95;
+  margin: 0;
+}
+
+.ring__title em {
+  color: var(--accent);
+}
+
+.ring__scene {
+  position: relative;
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
+  display: grid;
+  place-items: center;
+  min-height: 0;
+}
+
+.ring__ring {
+  --radius: 520px;
+  position: relative;
+  width: clamp(140px, min(20vw, 26vh), 290px);
+  aspect-ratio: 2 / 3;
+  transform-style: preserve-3d;
+  will-change: transform;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.ring__ring:active {
+  cursor: grabbing;
+}
+
+.ring__card {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  background: #000;
+  transform: rotateY(var(--angle)) translateZ(var(--radius));
+  backface-visibility: hidden;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.9);
+  transition: filter 0.5s ease;
+  filter: brightness(0.5) saturate(0.8);
+}
+
+.ring__card[data-active] {
+  filter: none;
+  outline: 1px solid rgba(200, 220, 203, 0.5);
+  outline-offset: 6px;
+}
+
+.ring__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ring__floor {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 4%;
+  height: 30%;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(200, 220, 203, 0.14), transparent 70%);
+  transform: rotateX(80deg);
+  pointer-events: none;
+}
+
+.ring__caption {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.2rem;
+}
+
+.ring__num {
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.ring__name {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+}
+
+.ring__cat {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.cta-open {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--ink);
+  color: var(--bg);
+  border: 0;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.85rem 2rem 0.85rem 1.3rem;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cta-open:hover {
+  background: var(--accent);
+}
+
+.cta-open svg,
+.cta-close svg {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.ring__hint {
+  margin: 0.8rem 0 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Intro ------------------------------------------------------------- */
+
+.intro {
+  padding: clamp(5rem, 12vw, 10rem) clamp(1rem, 6vw, 6rem);
+  border-top: 1px solid var(--line);
+}
+
+.intro__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 10vw, 10rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  margin: 0 0 3rem;
+}
+
+.intro__cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 5vw, 6rem);
+  max-width: 70rem;
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.intro__cols p {
+  margin: 0;
+}
+
+.intro__lead {
+  color: var(--ink);
+  font-size: 1.35rem;
+  line-height: 1.45;
+}
+
+/* Services ---------------------------------------------------------- */
+
+.services {
+  padding: 4rem var(--gut) 8rem;
+}
+
+.services h2,
+.how h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  margin: 0 0 3rem;
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.tilt {
+  --rx: 0deg;
+  --ry: 0deg;
+  --gx: 50%;
+  --gy: 50%;
+  perspective: 1100px;
+}
+
+.tilt__body {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.25s ease-out;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--bg-2);
+}
+
+.tilt__img {
+  position: absolute;
+  inset: -4%;
+  width: 108%;
+  height: 108%;
+  max-width: none;
+  object-fit: cover;
+  transform: translateZ(-40px) scale(1.06);
+  filter: brightness(0.6);
+  transition: filter 0.5s;
+}
+
+.tilt:hover .tilt__img {
+  filter: brightness(0.8);
+}
+
+.tilt__glare {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(40% 40% at var(--gx) var(--gy), rgba(255, 255, 255, 0.16), transparent 70%);
+  pointer-events: none;
+}
+
+.tilt__index {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.4rem;
+  font-family: var(--serif);
+  font-size: 3.4rem;
+  line-height: 1;
+  color: var(--accent);
+  transform: translateZ(70px);
+}
+
+.tilt__copy {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 1.6rem;
+  transform: translateZ(50px);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75) 40%);
+}
+
+.tilt__copy h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.8rem;
+  margin: 0 0 0.4rem;
+}
+
+.tilt__copy p {
+  margin: 0;
+  color: rgba(241, 237, 229, 0.85);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* How we work ------------------------------------------------------- */
+
+.how {
+  padding: 6rem var(--gut);
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.how .label {
+  color: #5c5f58;
+}
+
+.how__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.plan {
+  padding: clamp(1.6rem, 3vw, 3rem);
+  border-radius: 6px;
+}
+
+.plan--project {
+  border: 1px solid rgba(12, 14, 13, 0.22);
+}
+
+.plan--retainer {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.plan__tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
+  opacity: 0.7;
+}
+
+.plan h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  margin: 0 0 0.8rem;
+}
+
+.plan p {
+  line-height: 1.6;
+  margin: 0 0 1.4rem;
+  max-width: 42ch;
+}
+
+.plan ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 0.9rem;
+}
+
+.plan li::before {
+  content: "+ ";
+  opacity: 0.6;
+}
+
+/* Contact ----------------------------------------------------------- */
+
+.contact {
+  position: relative;
+  min-height: 90vh;
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+}
+
+.contact__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.45);
+}
+
+.contact__inner {
+  position: relative;
+  padding: 4rem var(--gut);
+}
+
+.contact h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 6vw, 5.5rem);
+  line-height: 0.95;
+  margin: 0 0 2rem;
+  max-width: 16ch;
+}
+
+.contact__mail {
+  display: inline-block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.4rem, 4vw, 3.2rem);
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  margin-bottom: 2rem;
+  overflow-wrap: anywhere;
+}
+
+.contact__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.cta-wa {
+  background: var(--accent);
+  color: var(--bg);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.9rem 1.6rem;
+  border-radius: 999px;
+  transition: transform 0.3s;
+}
+
+.cta-wa:hover {
+  transform: scale(1.05);
+}
+
+.cta-phone {
+  color: var(--ink);
+  text-decoration: none;
+  padding: 0.9rem 1.6rem;
+  border: 1px solid rgba(241, 237, 229, 0.4);
+  transition: background 0.3s, color 0.3s;
+}
+
+.cta-phone:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.cta-ig {
+  color: var(--ink);
+  padding: 0.9rem 0.4rem;
+  text-underline-offset: 6px;
+}
+
+.ftr {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.6rem var(--gut);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+}
+
+/* Viewer ------------------------------------------------------------ */
+
+.viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(8, 9, 9, 0.97);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem clamp(1rem, 3vw, 2.5rem);
+}
+
+.viewer[hidden] {
+  display: none;
+}
+
+.viewer__bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.viewer__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin: 0;
+}
+
+.cta-close {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font: inherit;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+}
+
+.viewer__strip {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  min-height: 0;
+  padding-bottom: 1rem;
+  align-items: center;
+}
+
+.viewer__media {
+  height: 100%;
+  max-height: 78vh;
+  width: auto;
+  max-width: none;
+  scroll-snap-align: center;
+  border-radius: 4px;
+  flex: none;
+}
+
+/* Responsive -------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .hdr__nav {
+    display: none;
+  }
+  .cta-book {
+    margin-left: auto;
+  }
+  .mark__word {
+    display: none;
+  }
+  .intro__cols,
+  .how__grid,
+  .services__grid {
+    grid-template-columns: 1fr;
+  }
+  .chapter--right {
+    margin-left: 0;
+  }
+  .ring__caption {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .cta-open {
+    margin-left: 0;
+  }
+  .viewer__media {
+    max-height: 65vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .film__video {
+    display: none;
+  }
+  .tilt__body {
+    transform: none;
+  }
+  .cta-reel__dot {
+    animation: none;
+  }
+}
+
+</style>
+</head>
+<body>
+  <header class="hdr">
+    <a class="mark" href="#top" aria-label="Eitan House, back to top">
+      <span class="mark__mono" aria-hidden="true">EH</span>
+      <span class="mark__word">Eitan House</span>
+    </a>
+    <nav class="hdr__nav" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#how">How we work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="cta-book" href="#contact"><span>Book a shoot</span></a>
+  </header>
+
+  <main id="top">
+    <!-- Scroll film: the visitor's scroll drives one continuous camera move -->
+    <section class="film" id="film" aria-label="Eitan House">
+      <div class="film__stage">
+        <img class="film__poster" id="filmPoster" alt="" src="https://d2ol7oe51mr4n9.cloudfront.net/user_35VkZbOgqJOJXo8mXfNMZN3TkHp/c2408087-78b3-4312-a638-448bd78e499f.jpg">
+        <video class="film__video" id="filmVideo" muted playsinline preload="auto" aria-hidden="true"></video>
+        <div class="film__shade" aria-hidden="true"></div>
+        <div class="film__progress" aria-hidden="true"><span id="filmBar"></span></div>
+      </div>
+      <div class="film__chapters">
+        <article class="chapter" data-at="0">
+          <p class="kicker">Eitan House / Creative Production Agency</p>
+          <h1 class="chapter__title">We create media.</h1>
+          <p class="chapter__body">Images, video, social media content and ads, plus website and social media management.</p>
+          <a class="cta-reel" href="#work"><span class="cta-reel__dot" aria-hidden="true"></span>Enter the work</a>
+        </article>
+        <article class="chapter chapter--right">
+          <p class="kicker">Images / Video</p>
+          <h2 class="chapter__title">Images and video.</h2>
+          <p class="chapter__body">Image creation and video creation, for brands, campaigns and the feed.</p>
+          <ul class="tags"><li>Image Creation</li><li>Video Creation</li></ul>
+        </article>
+        <article class="chapter">
+          <p class="kicker">Social / Ads / Web</p>
+          <h2 class="chapter__title">Content that gets seen.</h2>
+          <p class="chapter__body">Social media content and ads, plus website management and social media management.</p>
+          <ul class="tags"><li>Social Content</li><li>Ads</li><li>Websites</li><li>Social Management</li></ul>
+        </article>
+        <article class="chapter chapter--right">
+          <p class="kicker">Projects / Retainers</p>
+          <h2 class="chapter__title">One project, or a year or two together.</h2>
+          <p class="chapter__body">Large single productions and content creation days, or a retainer for a period agreed in advance.</p>
+          <a class="cta-mail" href="mailto:office@eitanhouse.com">office@eitanhouse.com</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3D work ring -->
+    <section class="ring" id="work" aria-labelledby="work-title">
+      <div class="ring__pin">
+        <div>
+          <p class="label">Work / <span id="ringCount"></span> image sets</p>
+          <h2 id="work-title" class="ring__title">The work, <em>in the round.</em></h2>
+        </div>
+        <div class="ring__scene">
+          <div class="ring__ring" id="ring"></div>
+          <div class="ring__floor" aria-hidden="true"></div>
+        </div>
+        <div class="ring__caption" aria-live="polite">
+          <span class="ring__num" id="ringNum">01</span>
+          <div>
+            <p class="ring__name" id="ringName"></p>
+            <p class="ring__cat" id="ringCat"></p>
+          </div>
+          <button type="button" class="cta-open" id="ringOpen">
+            View set
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <p class="ring__hint">Scroll or drag to turn the ring</p>
+      </div>
+    </section>
+
+    <section class="intro" aria-labelledby="intro-title">
+      <p class="label">Creative Production Agency</p>
+      <h2 id="intro-title" class="intro__title">We create media.</h2>
+      <div class="intro__cols">
+        <p class="intro__lead">Images, video, social media content and ads, plus the websites and social channels that carry them.</p>
+        <p>Large single productions, content creation days, or a retainer for a term agreed in advance: one year, two years or more.</p>
+      </div>
+    </section>
+
+    <section class="services" id="services" aria-labelledby="services-title">
+      <p class="label">Services</p>
+      <h2 id="services-title">What we do.</h2>
+      <div class="services__grid" id="serviceCards"></div>
+    </section>
+
+    <section class="how" id="how" aria-labelledby="how-title">
+      <p class="label">How we work</p>
+      <h2 id="how-title">Two ways to work with us.</h2>
+      <div class="how__grid" id="plans"></div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <img class="contact__bg" alt="" loading="lazy" src="https://framerusercontent.com/images/hUwGR7pjOqprC5768CignC33kiY.jpg?scale-down-to=3840">
+      <div class="contact__inner">
+        <p class="label">Let's talk</p>
+        <h2 id="contact-title">Single project or retainer, let's talk.</h2>
+        <a class="contact__mail" href="mailto:office@eitanhouse.com">office@eitanhouse.com</a>
+        <div class="contact__row">
+          <a class="cta-wa" href="https://wa.me/972546709002" target="_blank" rel="noreferrer">WhatsApp</a>
+          <a class="cta-phone" href="tel:+972546709002">+972 54-670-9002</a>
+          <a class="cta-ig" href="https://www.instagram.com/eitan.house/" target="_blank" rel="noreferrer">@eitan.house</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ftr">
+    <span>Eitan House, Creative Production Agency</span>
+    <span>Images / Video / Social / Ads</span>
+    <span>Projects / Retainers</span>
+  </footer>
+
+  <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewerTitle" hidden>
+    <div class="viewer__bar">
+      <div>
+        <p class="label" id="viewerCat"></p>
+        <h2 class="viewer__title" id="viewerTitle"></h2>
+      </div>
+      <button type="button" class="cta-close" id="viewerClose">Close
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="viewer__strip" id="viewerStrip"></div>
+  </div>
+
+  <script type="module">
+// Eitan House content. Copy follows the agency's own brief only.
+// Photography is the studio's own, served from its Framer CDN; img() asks
+// the CDN for a scaled rendition (originals run to 4K and beyond).
+
+const CDN = "https://framerusercontent.com/images/";
+export const img = (id, w) => (w ? `${CDN}${id}.jpg?scale-down-to=${w}` : `${CDN}${id}.jpg`);
+
+const HF = "https://d2ol7oe51mr4n9.cloudfront.net/user_35VkZbOgqJOJXo8mXfNMZN3TkHp/";
+export const film = {
+  desktop: `${HF}9af9e05a-7a5e-441d-a55f-862d6fb550fb.mp4`,
+  mobile: `${HF}a5e4d24e-c1d4-4172-ab5e-f04dd2ea805c.mp4`,
+  poster: `${HF}c2408087-78b3-4312-a638-448bd78e499f.jpg`,
+};
+
+export const showreel = "https://framerusercontent.com/assets/2OSw66CHTeOjafRRbeit4FCK7vo.mp4";
+
+export const contact = {
+  email: "office@eitanhouse.com",
+  phone: "+972 54-670-9002",
+  phoneHref: "tel:+972546709002",
+  whatsapp: "https://wa.me/972546709002",
+  instagram: "https://www.instagram.com/eitan.house/",
+};
+
+export const services = [
+  { id: "image", name: "Image Creation", detail: "Photography for brands, campaigns and the feed.", cover: "F4hEThvBA6bAm9L4zPwB2SlY0" },
+  { id: "video", name: "Video Creation", detail: "Films, commercials and short-form video.", cover: "A6l3mN7JBPw00xFy3mKYGvhp8s" },
+  { id: "social", name: "Social Media Content", detail: "Content made for social platforms.", cover: "EQGL5NtlquLQdTHshsoELO2XsTE" },
+  { id: "ads", name: "Advertising", detail: "Ads and commercials, from idea to delivery.", cover: "amwyAbn3SXB4RbBmY2HfD1NCgD0" },
+  { id: "web", name: "Website Management", detail: "Building and running your website.", cover: "mm3w4g9Fq6xXLodyiNqz1VsLRCA" },
+  { id: "network", name: "Social Media Management", detail: "Running your social channels, day to day.", cover: "Lm3ooNT9597WImbHu6Edrk2s8UI" },
+];
+
+export const engagements = [
+  {
+    id: "project",
+    name: "Single Projects",
+    tag: "Project basis",
+    body: "Large-scale productions, or a dedicated content creation day. One project, fully produced and delivered.",
+    points: ["Large productions", "Content creation days"],
+  },
+  {
+    id: "retainer",
+    name: "Retainer",
+    tag: "1 to 2 years",
+    body: "Work for a period agreed in advance, a year, two years or more, with ongoing content and management under one agency.",
+    points: ["Agreed term", "Ongoing production", "Website management", "Social management"],
+  },
+];
+
+const kind = { image: "Image Creation", video: "Video Creation", social: "Social Media Content", ads: "Advertising" };
+
+const sets = [
+  ["video", "aKEHaIBrG4fEkjvlEDQhs039E", ["ittAOCXte11BGnUwSH2IJuVfz0", "rOvEAFxNYOXNVY2n2TAlm9WWzrg", "RRmYvzV2Y0CJMGykupguJoo76w", "RILWl7nwA5iMyZPwNMvrcB5uZ6k", "BCLkUq59QI2SAJ6gS9mXkYobfI", "hUwGR7pjOqprC5768CignC33kiY"]],
+  ["ads", "amwyAbn3SXB4RbBmY2HfD1NCgD0", ["F4hEThvBA6bAm9L4zPwB2SlY0", "YDut5cWsM5pD1LxA5ZdZBmobMQ", "L8Vdb6pvpFww5Qa0zGTHK362c", "pcllPECzB0frgdh1aWbWkoHl7A", "CTcZ9IbbdtimyMOi8DW44BTJMg"]],
+  ["video", "eOT1gtDstZmLI65qRXIRysEPybo", ["96e8mgrVbDnDGwRBEHgsnsokvQ", "XeiL9iI4cNuEGtCWZvyzt2PY5eM", "iaoo78JVCmHD3Keitc7dIVDpg", "qy5bG7EI6CGmw5nSYQVZ8zqhrc", "Kofp1sra9YHaZilK7MMEmKcA5x4", "F4q9Pfy1hDboJnpcR6i8Mpra2UQ"]],
+  ["image", "Yxo3mKuAh9hrj8a5xYGWjFFfNw", ["fTVgLC2baaHe0BD1ljkQ7zt3I0", "beaTVVcHAcupM04YLURYhxSsORw", "peyWFEPUgYrMrskCK7fnEelSpM", "oAU6pzjI5a6a0wbUWqZnXz6mQ", "kD8jFOnj90CchXbblIBu9y9JUos"]],
+  ["social", "EQGL5NtlquLQdTHshsoELO2XsTE", ["iddzhUVrwhA4dpSbRmUVwjkU0gY", "SHduJy9fNnWAJ6NSKPux6kSCng", "xxrbdKvaahPJAARsICZ6hcb8PbY", "Zy5GWfdoiOdKwuSh6mswqcubQ", "ACH2jJgpsUCDy4nMrdG6ULLfBak"]],
+  ["ads", "Lm3ooNT9597WImbHu6Edrk2s8UI", ["0ZlcsXw1jK5GwZFQfqQF8kX9XE", "7msaAlVtMjkLop57mmparXoyaGY", "PtuklG6C4cyfyfBcPvtAgqNAqY", "Ibu3IZUbIcn9ZriBJ7ekQKVMyr0"]],
+  ["video", "UF89HIEnU1wXDqfTBDqs09AIz0", ["CPSzgQRemT9WGekkY22bAZFj8", "avs7nPFJnrTR9KanlBkxpLuhA", "O4RW7gd5q4pxyCudCHhbiDYoE", "THgvxNAjxqxhDnFKX2SXw88s", "qJVr4nWFnmnUXaLDD4ktVdXiUU"]],
+  ["image", "z7dob6B4j84JAtUPHUwFB5Lq1Rs", ["A6l3mN7JBPw00xFy3mKYGvhp8s", "tyPmWN28oK67Y9FORpGODpQOq4", "EM5vxRZpiwQk4WVy35c6KpeyPY", "lzAxUHAcxuOCAYdNIOMCWoIKV4"]],
+  ["image", "mm3w4g9Fq6xXLodyiNqz1VsLRCA", ["7uiWgdIeLhqkkRy3pBknVcvco", "2xz7fcaFv4EiWXtE9KTJU1soy0", "ixksUpvtmsjpiwcpNPlBBor5XDE", "K9BmZbXDGWwN1gx4RvoVTW4kMVE", "mG2MldbT5xVKxCIYdGxsZST05k"]],
+  ["social", "GpqlerfGy3uu78lBFqc8FWn6A", ["YEUrUnJg94Idjbb8PaapFmNaqKs", "8hvGmWt4Kdgqa1EMo55By0uFzLY", "3AazfTDMM1VcZXA7AfpNJma66FI", "5I4C5qaUSTtIePknexTSL7rfx4", "KcsP3QjyToK1fWcsYtlhzlFOhQ"]],
+];
+
+export const work = sets.map(([k, cover, images], i) => ({
+  name: `Work ${String(i + 1).padStart(2, "0")}`,
+  kind: k,
+  category: kind[k],
+  cover,
+  images: [cover, ...images],
+}));
+
+export const kinds = kind;
+
+
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = (id) => document.getElementById(id);
+
+/* ---------------------------------------------------------------- */
+/* Scroll film: scroll position drives video time                   */
+/* ---------------------------------------------------------------- */
+
+const filmSection = $("film");
+const video = $("filmVideo");
+const poster = $("filmPoster");
+const bar = $("filmBar");
+const chapters = [...document.querySelectorAll(".chapter")];
+
+function filmProgress() {
+  const r = filmSection.getBoundingClientRect();
+  const span = Math.max(r.height - innerHeight, 1);
+  return Math.min(Math.max(-r.top / span, 0), 1);
+}
+
+if (!reduced) {
+  const src = innerWidth < 760 ? film.mobile : film.desktop;
+  // Load the whole clip into memory so seeking is instant in both directions.
+  fetch(src)
+    .then((r) => r.blob())
+    .then((b) => {
+      video.src = URL.createObjectURL(b);
+    })
+    .catch(() => {
+      video.src = src;
+    });
+
+  video.addEventListener("loadeddata", () => {
+    video.classList.add("is-ready");
+    poster.classList.add("is-hidden");
+  });
+
+  let current = 0;
+  let seeking = false;
+  video.addEventListener("seeked", () => (seeking = false));
+
+  const tick = () => {
+    const p = filmProgress();
+    bar.style.transform = `scaleX(${p})`;
+    if (video.duration) {
+      const target = p * (video.duration - 0.05);
+      current += (target - current) * 0.18;
+      if (!seeking && Math.abs(video.currentTime - current) > 0.01) {
+        seeking = true;
+        video.currentTime = current;
+      }
+    }
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+
+  // iOS needs a gesture before it decodes frames.
+  addEventListener("touchstart", () => video.play().then(() => video.pause()).catch(() => {}), { once: true });
+}
+
+/* ---------------------------------------------------------------- */
+/* 3D ring of work                                                    */
+/* ---------------------------------------------------------------- */
+
+const ringSection = $("work");
+const ring = $("ring");
+const count = work.length;
+const step = 360 / count;
+$("ringCount").textContent = String(count).padStart(2, "0");
+
+work.forEach((w, i) => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "ring__card";
+  b.style.setProperty("--angle", `${i * step}deg`);
+  b.setAttribute("aria-label", `Open ${w.name}, ${w.category}`);
+  b.innerHTML = `<img src="${img(w.cover, 1200)}" alt="" loading="lazy" draggable="false">`;
+  b.addEventListener("click", () => {
+    if (!moved) openViewer(w);
+  });
+  ring.appendChild(b);
+});
+const cards = [...ring.children];
+
+let drag = 0;
+let dragVel = 0;
+let angle = 0;
+let active = -1;
+let pointerX = null;
+let moved = false;
+
+function layoutRing() {
+  const w = cards[0].offsetWidth || 260;
+  const radius = Math.round(w / 2 / Math.tan(Math.PI / count) + w * 0.18);
+  ring.style.setProperty("--radius", `${radius}px`);
+}
+
+function setActive(i) {
+  active = i;
+  cards.forEach((c, j) => c.toggleAttribute("data-active", j === i));
+  $("ringNum").textContent = String(i + 1).padStart(2, "0");
+  $("ringName").textContent = work[i].name;
+  $("ringCat").textContent = work[i].category;
+}
+
+function ringTick() {
+  const r = ringSection.getBoundingClientRect();
+  const span = Math.max(r.height - innerHeight, 1);
+  const p = Math.min(Math.max(-r.top / span, 0), 1);
+  if (pointerX === null) {
+    drag += dragVel;
+    dragVel *= 0.92;
+  }
+  const target = -p * (360 - step) + drag;
+  angle += reduced ? target - angle : (target - angle) * 0.12;
+  ring.style.transform = `translateZ(calc(var(--radius) * -1)) rotateY(${angle}deg)`;
+  const idx = ((Math.round(-angle / step) % count) + count) % count;
+  if (idx !== active) setActive(idx);
+  requestAnimationFrame(ringTick);
+}
+
+ring.addEventListener("pointerdown", (e) => {
+  pointerX = e.clientX;
+  moved = false;
+});
+addEventListener("pointermove", (e) => {
+  if (pointerX === null) return;
+  const dx = e.clientX - pointerX;
+  if (Math.abs(dx) > 2) moved = true;
+  pointerX = e.clientX;
+  drag += dx * 0.25;
+  dragVel = dx * 0.25;
+});
+addEventListener("pointerup", () => (pointerX = null));
+addEventListener("resize", layoutRing);
+$("ringOpen").addEventListener("click", () => openViewer(work[active]));
+
+layoutRing();
+setActive(0);
+requestAnimationFrame(ringTick);
+
+/* ---------------------------------------------------------------- */
+/* Services with depth tilt                                          */
+/* ---------------------------------------------------------------- */
+
+$("serviceCards").innerHTML = services
+  .map(
+    (s, i) => `
+  <article class="tilt">
+    <div class="tilt__body">
+      <img class="tilt__img" src="${img(s.cover, 1600)}" alt="" loading="lazy">
+      <div class="tilt__glare" aria-hidden="true"></div>
+      <span class="tilt__index" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
+      <div class="tilt__copy">
+        <h3>${s.name}</h3>
+        <p>${s.detail}</p>
+      </div>
+    </div>
+  </article>`,
+  )
+  .join("");
+
+if (!reduced) {
+  document.querySelectorAll(".tilt").forEach((el) => {
+    el.addEventListener("pointermove", (e) => {
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      el.style.setProperty("--rx", `${(-y * 10).toFixed(2)}deg`);
+      el.style.setProperty("--ry", `${(x * 14).toFixed(2)}deg`);
+      el.style.setProperty("--gx", `${(x + 0.5) * 100}%`);
+      el.style.setProperty("--gy", `${(y + 0.5) * 100}%`);
+    });
+    el.addEventListener("pointerleave", () => {
+      el.style.setProperty("--rx", "0deg");
+      el.style.setProperty("--ry", "0deg");
+    });
+  });
+}
+
+/* ---------------------------------------------------------------- */
+/* Engagement models                                                  */
+/* ---------------------------------------------------------------- */
+
+$("plans").innerHTML = engagements
+  .map(
+    (e) => `
+  <article class="plan plan--${e.id}">
+    <p class="plan__tag">${e.tag}</p>
+    <h3>${e.name}</h3>
+    <p>${e.body}</p>
+    <ul>${e.points.map((p) => `<li>${p}</li>`).join("")}</ul>
+  </article>`,
+  )
+  .join("");
+
+/* ---------------------------------------------------------------- */
+/* Viewer: full resolution (up to 3840px) gallery                    */
+/* ---------------------------------------------------------------- */
+
+const viewer = $("viewer");
+let lastFocus = null;
+
+function openViewer(w) {
+  lastFocus = document.activeElement;
+  $("viewerCat").textContent = w.category;
+  $("viewerTitle").textContent = w.name;
+  $("viewerStrip").innerHTML = w.images
+    .map((id) => `<img class="viewer__media" src="${img(id, 3840)}" alt="${w.name}" loading="lazy">`)
+    .join("");
+  viewer.hidden = false;
+  document.body.style.overflow = "hidden";
+  $("viewerClose").focus();
+}
+
+function closeViewer() {
+  viewer.hidden = true;
+  document.body.style.overflow = "";
+  lastFocus?.focus();
+}
+
+$("viewerClose").addEventListener("click", closeViewer);
+addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !viewer.hidden) closeViewer();
+});
+
+</script>
+</body>
+</html>
