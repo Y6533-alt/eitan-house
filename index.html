@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eitan House | Two Sketches</title>
+  <link rel="icon" href="https://framerusercontent.com/images/8p4bR91WkXcx1u7bxQH4BYNzQ.png">
+  <style>
+    :root { --bg: #0c0e0d; --ink: #f1ede5; --muted: #a3a69f; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--ink); font-family: system-ui, sans-serif; display: grid; grid-template-rows: auto 1fr; }
+    header { padding: 1.4rem 16px; letter-spacing: .3em; text-transform: uppercase; font-size: .8rem; color: var(--muted); }
+    main { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    a { position: relative; display: flex; align-items: flex-end; min-height: 45vh; padding: 2rem 16px; color: #fff; text-decoration: none; overflow: hidden; }
+    a img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.5); transition: transform .8s, filter .5s; }
+    a:hover img { transform: scale(1.04); filter: brightness(.7); }
+    a div { position: relative; }
+    h2 { font-size: clamp(2rem, 5vw, 4rem); margin: 0 0 .4rem; font-weight: 700; }
+    p { margin: 0; color: #ddd; }
+    @media (max-width: 760px) { main { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>Eitan House / Creative Production Agency / Two website sketches</header>
+  <main>
+    <a href="3d/">
+      <img src="https://d2ol7oe51mr4n9.cloudfront.net/user_35VkZbOgqJOJXo8mXfNMZN3TkHp/c2408087-78b3-4312-a638-448bd78e499f.jpg" alt="">
+      <div><h2>Sketch A / 3D</h2><p>Scroll-driven film and a 3D ring of work.</p></div>
+    </a>
+    <a href="classic/">
+      <img src="https://framerusercontent.com/images/amwyAbn3SXB4RbBmY2HfD1NCgD0.jpg?scale-down-to=1600" alt="">
+      <div><h2>Sketch B / Classic</h2><p>Editorial layout, no 3D.</p></div>
+    </a>
+  </main>
+</body>
+</html>
